@@ -1,0 +1,110 @@
+* {
+    font-family: 'Calibri';
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+body {
+    background-color: LightSteelBlue;
+    display:flex;
+    justify-content:space-around;
+    margin:0px;
+    flex-wrap:wrap;
+}
+
+section#section_left {
+    background-color:LightSkyBlue;
+    width:50%;
+    height:100vh;
+    display:flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    border: 10px solid MediumPurple;
+}
+
+article#eingabebereich {
+    background-color: RoyalBlue;
+    color:beige;
+}
+
+article#einzelposten {
+    color:red;
+}
+
+section#section_right {
+    background-color: CornflowerBlue;
+    width:50%;
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    border: 10px solid MediumPurple;
+}
+
+form {
+    padding:10px;
+    height:10vh;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:flex-end;
+    flex-wrap: wrap;
+}
+
+form, aside > * {
+    margin: 5px;
+}
+
+form > div {
+
+    display:flex;
+    flex-direction: column;
+    padding:10px;
+}
+
+form input {
+    width: 100%;
+    color: black;
+    font-size: 20px;
+    font-size: 1rem;
+}
+
+form label {
+    margin-bottom: 5px;
+    margin-left:1px;
+}
+
+main {
+    margin-top:10px;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.posten {
+    background-color: coral;
+    display:flex;
+    justify-content: space-around;
+    padding:10px 0px;
+}
+
+.posten span {
+    display:flex;
+    border-left: 1px solid black;
+    margin:0px 20px;
+    background-color: red;
+    flex:1;
+    justify-content: flex-end;
+}
+
+#gesamt {
+    background-color:Navy;
+    color:beige;
+    display:flex;
+    justify-content:center;
+}
+
+#aktueller_monat {
+    background-color:RosyBrown;
+    color:beige;
+    display:flex;
+    justify-content:center;
+}
