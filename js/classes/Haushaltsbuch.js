@@ -13,76 +13,58 @@ class Haushaltsbuch {
             daten.kategorie,
             daten.datum
         );
+        console.clear();
         this.eintraege.push(neuer_eintrag);
-        console.log(this);
-        kategoriensammlung.kategorie_summieren(neuer_eintrag);
+        this._gesamtbilanz_berechnen();
+        // kategoriensammlung.kategorie_summieren(neuer_eintrag);
         monatssammlung.eintrag_hinzufuegen(neuer_eintrag);
-        kategoriensammlung._html_generieren();
-        if (document.getElementById("gesamt")) {
-            document.getElementById("gesamt").remove();
-        };
-        if (document.getElementById("aktueller_monat")) {
-            document.getElementById("aktueller_monat").remove();
-        };
-        this.gesamt_objekt_anzeigen();
-        this.aktueller_monat_summe_berechnen();
-        this.aktueller_monat_anzeigen()
+        console.log(monatssammlung);
+        // kategoriensammlung._html_generieren();
+        // if (document.getElementById("gesamt")) {
+        //     document.getElementById("gesamt").remove();
+        // };
+        // if (document.getElementById("aktueller_monat")) {
+        //     document.getElementById("aktueller_monat").remove();
+        // };
+        // aktuell._kategorie_summieren();
+        // gesamt.anzeigen();
+        // aktuell.anzeigen();
     }
 
-    aktueller_monat_summe_berechnen() {
-        let bilanz = 0;
-        let aktuell = new Date();
-        let aktuell_ausgeschrieben = aktuell.toLocaleString("de-DE", {
-            month: "long",
-            year: "numeric"
-        });
-        this.eintraege.forEach(eintrag => {
-            if ((eintrag.datum.getFullYear() === aktuell.getFullYear() && eintrag.datum.getMonth()) === aktuell.getMonth()) {
-                bilanz += eintrag.betrag;
-            }
-        });
-        return `${aktuell_ausgeschrieben}: ${this._betrag_zu_string(bilanz)} Euro`;
-    }
-
-    aktueller_monat_summe_html() {
-        let kopf = document.createElement('h2');
-        kopf.textContent = `${this.aktueller_monat_summe_berechnen()}`;
-        return kopf;
-    }
-
-    aktueller_monat_anzeigen() {
-        let monatsartikel = document.createElement('article');
-        monatsartikel.setAttribute('id', 'aktueller_monat');
-        monatsartikel.appendChild(this.aktueller_monat_summe_html());
-        document.querySelector('#gesamt').insertAdjacentElement("afterend", monatsartikel);
-    }
-
-
-    gesamt_summe_berechnen() {
+    _gesamtbilanz_berechnen() {
         this.gesamtbilanz = 0;
         this.eintraege.forEach(eintrag => {
             this.gesamtbilanz += eintrag.betrag;
         });
-        return `Gesamtausgaben: ${this._betrag_zu_string(this.gesamtbilanz)} Euro`;
     }
 
-    gesamt_summe_html() {
-        let kopf = document.createElement('h2');
-        kopf.textContent = `${this.gesamt_summe_berechnen()}`;
-        return kopf;
-    }
-
-    gesamt_objekt_anzeigen() {
-        let monatsartikel = document.createElement('article');
-        monatsartikel.setAttribute('id', 'gesamt');
-        monatsartikel.appendChild(this.gesamt_summe_html());
-        monatsartikel.appendChild(kategoriensammlung._html_generieren());
-        document.querySelector('#eingabebereich').insertAdjacentElement("afterend", monatsartikel);
-    }
-
-    _betrag_zu_string(betrag) {
-        return (betrag/100).toFixed(2).replace(".", ",");
-    }
+    // aktueller_monat_summe_berechnen() {
+    //     let bilanz = 0;
+    //     let aktuell = new Date();
+    //     let aktuell_ausgeschrieben = aktuell.toLocaleString("de-DE", {
+    //         month: "long",
+    //         year: "numeric"
+    //     });
+    //     this.eintraege.forEach(eintrag => {
+    //         if ((eintrag.datum.getFullYear() === aktuell.getFullYear() && eintrag.datum.getMonth()) === aktuell.getMonth()) {
+    //             bilanz += eintrag.betrag;
+    //         }
+    //     });
+    //     return `${aktuell_ausgeschrieben}: ${this._betrag_zu_string(bilanz)} Euro`;
+    // }
+    //
+    // aktueller_monat_summe_html() {
+    //     let kopf = document.createElement('h2');
+    //     kopf.textContent = `${this.aktueller_monat_summe_berechnen()}`;
+    //     return kopf;
+    // }
+    //
+    // aktueller_monat_anzeigen() {
+    //     let monatsartikel = document.createElement('article');
+    //     monatsartikel.setAttribute('id', 'aktueller_monat');
+    //     monatsartikel.appendChild(this.aktueller_monat_summe_html());
+    //     document.querySelector('#gesamt').insertAdjacentElement("afterend", monatsartikel);
+    // }
 
     //     this._ausgaben_summieren();
     //     this._summe_anzeigen();

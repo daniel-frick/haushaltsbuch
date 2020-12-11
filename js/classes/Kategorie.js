@@ -6,28 +6,31 @@ class Kategorie {
     }
 
     kategorien_sammeln() {
+        let kategorienliste = []
         let lotterleben = new Kategorie(
             "Lotterleben", 0);
-        kategoriensammlung._kat_sammlung.push(lotterleben);
+        kategorienliste.push(lotterleben);
 
         let haushalt = new Kategorie(
             "Haushalt", 0);
-        kategoriensammlung._kat_sammlung.push(haushalt);
+        kategorienliste.push(haushalt);
 
         let essen = new Kategorie(
             "Essen",0);
-        kategoriensammlung._kat_sammlung.push(essen);
+        kategorienliste.push(essen);
 
         let vergnuegen = new Kategorie(
             "Vergnügen", 0);
-        kategoriensammlung._kat_sammlung.push(vergnuegen);
+        kategorienliste.push(vergnuegen);
 
         let auto = new Kategorie(
             "Auto", 0);
-        kategoriensammlung._kat_sammlung.push(auto);
+        kategorienliste.push(auto);
 
         let reisen = new Kategorie(
             "Reisen", 0);
-        kategoriensammlung._kat_sammlung.push(reisen);
+        kategorienliste.push(reisen);
+
+        return kategorienliste;
     }
 }

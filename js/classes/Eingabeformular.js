@@ -4,11 +4,18 @@ class Eingabeformular {
         this._html = this._html_generieren();
     }
 
+    _datum_verarbeiten(e) {
+        let monat = e.target.elements.monat.value;
+        let jahr = 2020;
+        console.log(new Date(jahr, monat));
+        return new Date(jahr, monat);
+    }
+
     _formulardaten_holen(e) {
         return {
             betrag: this._betrag_verarbeiten(e.target.elements.betrag.value),
             kategorie: e.target.elements.kategorie.value,
-            datum: new Date()
+            datum: this._datum_verarbeiten(e)
         }
     }
 
@@ -20,6 +27,8 @@ class Eingabeformular {
         eingabeformular.querySelector('#eingabeformular').addEventListener("submit", e => {
             e.preventDefault();
             let formulardaten = this._formulardaten_holen(e);
+            console.log(formulardaten);
+            console.log(formulardaten.datum);
             haushaltsbuch.eintrag_hinzufuegen(formulardaten);
         });
     }
@@ -42,6 +51,13 @@ class Eingabeformular {
                         <option value="Vergnügen" form="eingabeformular">Vergügen</option>
                         <option value="Auto" form="eingabeformular">Auto</option>
                         <option value="Reisen" form="eingabeformular">Reisen</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="monat">Monat</label>
+                    <select id="monat" form="eingabeformular"/>
+                        <option value="10" form="eingabeformular">November</option>
+                        <option value="11" form="eingabeformular">Dezember</option>
                     </select>
                 </div>
                 <div>

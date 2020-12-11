@@ -5,6 +5,7 @@ class Monatsobjekt {
         this._monat = monat;
         this._eintraege = [];
         this._ausgaben = 0;
+        this._kategorien = []
         this._html = this._html_generieren();
     }
 
@@ -16,8 +17,18 @@ class Monatsobjekt {
         return this._monat;
     }
 
-    eintrag_hinzufuegen(eintrag) {
-        this._eintraege.push(eintrag);
+    eintrag_hinzufuegen(neuer_eintrag) {
+        this._eintraege.push(neuer_eintrag);
+        this._ausgaben += neuer_eintrag.betrag;
+        this._kategorie_summieren(neuer_eintrag);
+    }
+
+    _kategorie_summieren(neuer_eintrag) {
+        this._kategorien.forEach(kat => {
+            if (neuer_eintrag.kategorie === kat.name) {
+                console.log("yes");
+            }
+        });
     }
 
     _html_generieren() {

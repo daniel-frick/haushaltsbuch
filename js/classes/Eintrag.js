@@ -1,10 +1,10 @@
 
 class Eintrag {
 
-    constructor(betrag, kategorie) {
+    constructor(betrag, kategorie, datum) {
         this.betrag = betrag;
         this.kategorie = kategorie;
-        this.datum = new Date();
+        this.datum = datum;
         this.timestamp = Date.now();
         this.html = this._html_generieren();
     }

@@ -5,13 +5,21 @@ class Kategoriensammlung {
         this._html = this._html_generieren();
     }
 
+    eintrag_hinzufuegen(neuer_eintrag) {
+        
+    }
+
     kategorie_summieren(neuer_eintrag) {
         this._kat_sammlung.forEach(kat => {
-                if (kat.name === neuer_eintrag.kategorie) {
-                    kat.summe += neuer_eintrag.betrag;
+                haushaltsbuch.eintraege.forEach(eintrag => {
+                if (kat.name === eintrag.kategorie) {
+                    kat.summe += eintrag.betrag;
                 }
+            });
         });
     }
+
+
 
     _betrag_zu_string(betrag) {
         return (betrag/100).toFixed(2).replace(".", ",");
@@ -38,3 +46,11 @@ class Kategoriensammlung {
     //     document.querySelector("#eingabebereich").insertAdjacentElement("afterend", this._html);
     // }
 }
+
+// kategorie_summieren(neuer_eintrag) {
+//     this._kat_sammlung.forEach(kat => {
+//             if (kat.name === neuer_eintrag.kategorie) {
+//                 kat.summe += neuer_eintrag.betrag;
+//             }
+//     });
+// }

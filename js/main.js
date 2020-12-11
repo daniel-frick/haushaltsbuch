@@ -10,6 +10,8 @@ document.querySelector("#section_left").insertAdjacentElement('afterend', sectio
 
 let eingabeformular = new Eingabeformular();
 eingabeformular.anzeigen()
+let gesamt = new Gesamt();
+let aktuell = new Aktuell();
 let haushaltsbuch = new Haushaltsbuch();
 let kategoriensammlung = new Kategoriensammlung();
 let kategorie = new Kategorie();
