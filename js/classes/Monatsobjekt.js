@@ -25,8 +25,8 @@ class Monatsobjekt {
 
     _kategorie_summieren(neuer_eintrag) {
         this._kategorien.forEach(kat => {
-            if (neuer_eintrag.kategorie === kat.name) {
-                console.log("yes");
+            if (kat.name === neuer_eintrag.kategorie) {
+                kat.summe += neuer_eintrag.betrag;
             }
         });
     }
@@ -37,8 +37,6 @@ class Monatsobjekt {
         let monats_header = document.createElement('h2');
         monats_header.innerText = `${this._monat} ${this._jahr}, Ausgaben: ${this._ausgaben}`;
         monatsartikel.insertAdjacentElement("afterbegin", monats_header);
-        // let monatseintraege = kategoriensammlung._html;
-        // monats_header.insertAdjacentElement("afterend", monatseintraege);
         return monatsartikel;
         }
 

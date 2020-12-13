@@ -13,7 +13,6 @@ eingabeformular.anzeigen()
 let gesamt = new Gesamt();
 let aktuell = new Aktuell();
 let haushaltsbuch = new Haushaltsbuch();
-let kategoriensammlung = new Kategoriensammlung();
 let kategorie = new Kategorie();
 kategorie.kategorien_sammeln();
 let monatsobjekt = new Monatsobjekt();
