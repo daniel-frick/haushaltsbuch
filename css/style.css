@@ -11,6 +11,15 @@ body {
     flex-wrap:wrap;
 }
 
+article#eingabebereich {
+    background-color: RoyalBlue;
+    color:beige;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 section#section_left {
     background-color:LightSkyBlue;
     width:50%;
@@ -21,13 +30,8 @@ section#section_left {
     border: 10px solid MediumPurple;
 }
 
-article#eingabebereich {
-    background-color: RoyalBlue;
-    color:beige;
-}
-
-article#einzelposten {
-    color:red;
+section#section_left > article {
+    flex:1;
 }
 
 section#section_right {
@@ -105,6 +109,36 @@ main {
 #aktueller_monat {
     background-color:RosyBrown;
     color:beige;
+}
+
+.monatsobjekt {
+    margin:0px;
+    padding:0px;
     display:flex;
-    justify-content:center;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+}
+
+.monatsobjekt ul {
+    list-style-type: none;
+    margin:0px;
+    padding:0px;
+    width:30%;
+}
+
+.monatsobjekt ul > li {
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.nachlinks {
+    align-self: flex-end;
+    margin-right:auto;
+}
+
+.nachrechts {
+    align-self: flex-end;
+    margin-left:auto;
+    margin-right:10px;
 }

@@ -24,10 +24,10 @@ class Monatssammlung {
         let neuer_monat = new Monatsobjekt(jahr, monat);
         neuer_monat._jahr = jahr;
         neuer_monat._monat = monat;
-        if (neuer_monat._kategorien.length === 0) {
-            kategorie.kategorien_sammeln().forEach(kat => {
-            neuer_monat._kategorien.push(kat);
-        })};
+        // if (neuer_monat._kategorien.length === 0) {
+        //     kategorie.kategorien_sammeln().forEach(kat => {
+        //     neuer_monat._kategorien.push(kat);
+        // })};
         neuer_monat.eintrag_hinzufuegen(neuer_eintrag);
         this._alle_monate.push(neuer_monat);
     }

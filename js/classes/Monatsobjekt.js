@@ -3,6 +3,7 @@ class Monatsobjekt {
     constructor(jahr, monat) {
         this._jahr = jahr;
         this._monat = monat;
+        this._datum = new Date(jahr, monat);
         this._eintraege = [];
         this._ausgaben = 0;
         this._kategorien = []
@@ -37,6 +38,13 @@ class Monatsobjekt {
         let monats_header = document.createElement('h2');
         monats_header.innerText = `${this._monat} ${this._jahr}, Ausgaben: ${this._ausgaben}`;
         monatsartikel.insertAdjacentElement("afterbegin", monats_header);
+        let kategorienliste = document.createElement('ul');
+        this._kategorien.forEach(kat => {
+            let listenpunkt = document.createElement('li');
+            listenpunkt.innerText = `${kat.name}: ${kat.summe}`
+            kategorienliste.appendChild(listenpunkt);
+        });
+        monatsartikel.appendChild(kategorienliste);
         return monatsartikel;
         }
 

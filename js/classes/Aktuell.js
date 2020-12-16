@@ -1,65 +1,77 @@
-// if ((eintrag.datum.getFullYear() === aktuell.getFullYear() && eintrag.datum.getMonth()) === aktuell.getMonth()) {
-class Aktuell {
-  constructor() {
-        this._gesamtbilanz = 0;
-    }
 
-    _aktueller_monat () {
+class Aktuell {
+
+    _aktueller_monat() {
         return new Date();
     }
 
-    _summe_berechnen () {
-        let bilanz = 0;
-        let aktuell = new Date();
-        let aktuell_ausgeschrieben = aktuell.toLocaleString("de-DE", {
-            month: "long",
-            year: "numeric"
-        });
-        haushaltsbuch.eintraege.forEach(eintrag => {
-            if ((eintrag.datum.getFullYear() === aktuell.getFullYear()) && (eintrag.datum.getMonth() === aktuell.getMonth())) {
-                bilanz += eintrag.betrag;
+    _monat_ermitteln() {
+        let monat_vorhanden = false;
+        for(let monat of monatssammlung._alle_monate) {
+            if((monat._monat === this._aktueller_monat().getMonth()) && (monat._jahr = this._aktueller_monat().getFullYear())) {
+                monat_vorhanden = true;
+                return monat;
             }
-        });
-        return `${aktuell_ausgeschrieben}: ${this._betrag_zu_string(bilanz)} Euro`;
+        }
+        if (!monat_vorhanden) {
+            this._monat_hinzufuegen(this._aktueller_monat().getFullYear(), this._aktueller_monat().getMonth());
+            console.log(monatssammlung._alle_monate);
+            for(let monat of monatssammlung._alle_monate) {
+                if((monat._monat === this._aktueller_monat().getMonth()) && (monat._jahr = this._aktueller_monat().getFullYear())) {
+                  monat_vorhanden = true;
+                  return monat;
+        }}
+      }
     }
 
-    _summe_html () {
-        let kopf = document.createElement('h2');
-        kopf.textContent = `${this._summe_berechnen()}`;
-        return kopf;
+    _monat_hinzufuegen(jahr, monat) {
+        let neuer_monat = new Monatsobjekt(jahr, monat);
+        neuer_monat._jahr = jahr;
+        neuer_monat._monat = monat;
+        kategorie.kategorien_sammeln().forEach(kat => {
+            neuer_monat._kategorien.push(kat);
+        });
+        monatssammlung._alle_monate.push(neuer_monat);
     }
 
-    _kategorie_summieren() {
-        const aktuell = new Date();
-        let kategorien_liste = document.createElement('ul');
-        kategoriensammlung._kat_sammlung.forEach(katakt => {
-            haushaltsbuch.eintraege.forEach(eintrag => {
-                if (
-                    (katakt.name === eintrag.kategorie)  &&
-                    (eintrag.datum.getFullYear() === aktuell.getFullYear()) &&
-                    (eintrag.datum.getMonth() === aktuell.getMonth())
-                )
-                   {
-                    katakt.summe = 0;
-                    katakt.summe += eintrag.betrag;
-                   }
-            });
-            let kategorien_punkt = document.createElement('li');
-            kategorien_punkt.textContent = `${katakt.name}: ${this._betrag_zu_string(katakt.summe)} Euro`;
-            kategorien_liste.appendChild(kategorien_punkt);
-        });
-        return kategorien_liste;
+    _html_generieren() {
+          let monat = this._monat_ermitteln();
+          let monatsartikel = document.createElement('article');
+          monatsartikel.setAttribute('id', 'aktueller_monat');
+          monatsartikel.setAttribute('class', 'monatsobjekt');
+          let monats_header = document.createElement('h2');
+          monats_header.innerText = `${this._datum_zu_text(monat._datum)}: ${this._betrag_zu_string(monat._ausgaben)} Euro`;
+          monatsartikel.insertAdjacentElement("afterbegin", monats_header);
+          let kategorienliste = document.createElement('ul');
+          for(let kat of monat._kategorien) {
+            let listenpunkt = document.createElement('li');
+            let span_kat = document.createElement('span');
+            span_kat.setAttribute('class', 'nachrechts');
+            span_kat.innerText = `${kat.name}:`
+            listenpunkt.appendChild(span_kat);
+            let span_betrag = document.createElement('span');
+            span_betrag.setAttribute('class', 'nachlinks');
+            span_betrag.innerText = `${this._betrag_zu_string(kat.summe)} Euro`;
+            listenpunkt.appendChild(span_betrag);
+            kategorienliste.appendChild(listenpunkt);
+          }
+          monatsartikel.appendChild(kategorienliste);
+          console.log(monatsartikel);
+          return monatsartikel;
     }
 
     anzeigen() {
-        let monatsartikel = document.createElement('article');
-        monatsartikel.setAttribute('id', 'aktueller_monat');
-        monatsartikel.appendChild(this._summe_html());
-        monatsartikel.appendChild(this._kategorie_summieren());
-        document.querySelector('#gesamt').insertAdjacentElement("afterend", monatsartikel);
+    document.querySelector("#section_left").insertAdjacentElement("beforeend", this._html_generieren());
     }
 
     _betrag_zu_string(betrag) {
         return (betrag/100).toFixed(2).replace(".", ",");
+    }
+
+    _datum_zu_text(monat) {
+        return monat.toLocaleDateString("de-DE", {
+            month: "long",
+            year: "numeric"
+        });
     }
 }

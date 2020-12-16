@@ -10,10 +10,13 @@ document.querySelector("#section_left").insertAdjacentElement('afterend', sectio
 
 let eingabeformular = new Eingabeformular();
 eingabeformular.anzeigen()
-let gesamt = new Gesamt();
-let aktuell = new Aktuell();
 let haushaltsbuch = new Haushaltsbuch();
-let kategorie = new Kategorie();
-kategorie.kategorien_sammeln();
-let monatsobjekt = new Monatsobjekt();
 let monatssammlung = new Monatssammlung();
+let kategorie = new Kategorie();
+let aktuell = new Aktuell();
+aktuell.anzeigen();
+
+let gesamt = new Gesamt();
+gesamt.anzeigen();
+
+let monatsobjekt = new Monatsobjekt();
