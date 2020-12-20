@@ -15,7 +15,6 @@ class Aktuell {
         }
         if (!monat_vorhanden) {
             this._monat_hinzufuegen(this._aktueller_monat().getFullYear(), this._aktueller_monat().getMonth());
-            console.log(monatssammlung._alle_monate);
             for(let monat of monatssammlung._alle_monate) {
                 if((monat._monat === this._aktueller_monat().getMonth()) && (monat._jahr = this._aktueller_monat().getFullYear())) {
                   monat_vorhanden = true;
@@ -56,12 +55,14 @@ class Aktuell {
             kategorienliste.appendChild(listenpunkt);
           }
           monatsartikel.appendChild(kategorienliste);
-          console.log(monatsartikel);
           return monatsartikel;
     }
 
     anzeigen() {
-    document.querySelector("#section_left").insertAdjacentElement("beforeend", this._html_generieren());
+        if(document.querySelector('#aktueller_monat')) {
+            document.querySelector('#aktueller_monat').remove()
+        }
+        document.querySelector("#section_left").insertAdjacentElement("beforeend", this._html_generieren());
     }
 
     _betrag_zu_string(betrag) {

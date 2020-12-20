@@ -32,6 +32,21 @@ class Monatsobjekt {
         });
     }
 
+    aktualisieren() {
+        this._kategorien.forEach(kat => {
+            kat.summe = 0;
+            this._eintraege.forEach(eintrag => {
+                if(eintrag.kategorie === kat.name){
+                    kat.summe += eintrag.betrag
+                }
+            })
+        })
+        this._ausgaben = 0;
+        this._eintraege.forEach(eintrag => {
+            this._ausgaben += eintrag.betrag;
+        })
+    }
+
     _html_generieren() {
         let monatsartikel = document.createElement('article');
         monatsartikel.setAttribute('class', 'monatsartikel');

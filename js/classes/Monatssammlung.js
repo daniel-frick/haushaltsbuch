@@ -24,15 +24,20 @@ class Monatssammlung {
         let neuer_monat = new Monatsobjekt(jahr, monat);
         neuer_monat._jahr = jahr;
         neuer_monat._monat = monat;
-        // if (neuer_monat._kategorien.length === 0) {
-        //     kategorie.kategorien_sammeln().forEach(kat => {
-        //     neuer_monat._kategorien.push(kat);
-        // })};
         neuer_monat.eintrag_hinzufuegen(neuer_eintrag);
         this._alle_monate.push(neuer_monat);
     }
 
-    _html_generieren() {
-
+    _eintrag_entfernen(timestamp) {
+        this._alle_monate.forEach(monat => {
+            for(let i = 0; i < monat._eintraege.length; i++) {
+                if (monat._eintraege[i].timestamp === timestamp) {
+                    monat._eintraege.splice(i, 1);
+                    break;
+                }
+            }
+        })
+        console.log(this._alle_monate);
+        aktuell.anzeigen();
     }
 }

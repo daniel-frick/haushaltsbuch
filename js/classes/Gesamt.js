@@ -33,6 +33,9 @@ class Gesamt {
     }
 
     anzeigen() {
+        if(document.querySelector('#gesamt')) {
+            document.querySelector('#gesamt').remove()
+        }
         this._kategorien_erzeugen();
         document.querySelector('#eingabebereich').insertAdjacentElement("afterend", this._html_generieren());
     }

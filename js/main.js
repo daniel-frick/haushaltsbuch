@@ -7,7 +7,6 @@ let section_right = document.createElement('section');
 section_right.setAttribute('id', 'section_right');
 document.querySelector("#section_left").insertAdjacentElement('afterend', section_right);
 
-
 let eingabeformular = new Eingabeformular();
 eingabeformular.anzeigen()
 let haushaltsbuch = new Haushaltsbuch();
@@ -18,5 +17,8 @@ aktuell.anzeigen();
 
 let gesamt = new Gesamt();
 gesamt.anzeigen();
+
+let listeaktuell = new ListeAktuell;
+listeaktuell.anzeigen();
 
 let monatsobjekt = new Monatsobjekt();

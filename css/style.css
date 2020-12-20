@@ -36,6 +36,7 @@ section#section_left > article {
 
 section#section_right {
     background-color: CornflowerBlue;
+    padding:0px;
     width:50%;
     height:100vh;
     display:flex;
@@ -111,6 +112,19 @@ main {
     color:beige;
 }
 
+
+.nachlinks {
+    align-self: flex-end;
+    margin-right:auto;
+}
+
+.nachrechts {
+    align-self: flex-end;
+    margin-left:auto;
+    margin-right:10px;
+}
+
+
 .monatsobjekt {
     margin:0px;
     padding:0px;
@@ -124,21 +138,70 @@ main {
     list-style-type: none;
     margin:0px;
     padding:0px;
-    width:30%;
+    width:100%;
 }
 
 .monatsobjekt ul > li {
     display:flex;
     flex-wrap: wrap;
+    width:100%;
+    border-radius: 10px;
 }
 
-.nachlinks {
-    align-self: flex-end;
-    margin-right:auto;
+article#aktueller_monat_liste {
+    background-color: RoyalBlue;
+    width:80%;
+    padding:0px;
+    color:beige;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
-.nachrechts {
+.eintragsobjekt {
+    margin:0px;
+    padding:0px;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: flex-start;
+}
+
+.eintragsobjekt ul {
+    list-style-type: none;
+    margin:0px;
+    padding:0px;
+    width:100%;
+}
+
+.eintragsobjekt ul > li {
+    margin:10px;
+    padding:5px;
+    color:beige;
+    background-color: LightSteelBlue;
+    border-radius: 10px;
+    width:90%;
+    display:flex;
+}
+
+.eintragsobjekt li > * {
+    padding:3px;
+    flex:1;
+}
+
+.delete {
+    justify-content: flex-end;
     align-self: flex-end;
     margin-left:auto;
     margin-right:10px;
+    border-radius: 5px;
+    flex-basis:50px;
+
+}
+
+.delete:hover {
+    background-color: PaleVioletRed;
+    /* transition-delay: 300ms; */
+    transition-duration:400ms;
 }
