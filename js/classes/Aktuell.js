@@ -1,13 +1,18 @@
 
 class Aktuell {
 
+    constructor()  {
+        this._kategorie = new Kategorie();
+        // this._monatssammlung = new Monatssammlung();
+    }
+
     _aktueller_monat() {
         return new Date();
     }
 
     _monat_ermitteln() {
         let monat_vorhanden = false;
-        for(let monat of monatssammlung._alle_monate) {
+        for(let monat of haushaltsbuch._monatssammlung._alle_monate) {
             if((monat._monat === this._aktueller_monat().getMonth()) && (monat._jahr = this._aktueller_monat().getFullYear())) {
                 monat_vorhanden = true;
                 return monat;
@@ -15,7 +20,7 @@ class Aktuell {
         }
         if (!monat_vorhanden) {
             this._monat_hinzufuegen(this._aktueller_monat().getFullYear(), this._aktueller_monat().getMonth());
-            for(let monat of monatssammlung._alle_monate) {
+            for(let monat of haushaltsbuch._monatssammlung._alle_monate) {
                 if((monat._monat === this._aktueller_monat().getMonth()) && (monat._jahr = this._aktueller_monat().getFullYear())) {
                   monat_vorhanden = true;
                   return monat;
@@ -27,10 +32,10 @@ class Aktuell {
         let neuer_monat = new Monatsobjekt(jahr, monat);
         neuer_monat._jahr = jahr;
         neuer_monat._monat = monat;
-        kategorie.kategorien_sammeln().forEach(kat => {
+        this._kategorie.kategorien_sammeln().forEach(kat => {
             neuer_monat._kategorien.push(kat);
         });
-        monatssammlung._alle_monate.push(neuer_monat);
+        haushaltsbuch._monatssammlung._alle_monate.push(neuer_monat);
     }
 
     _html_generieren() {

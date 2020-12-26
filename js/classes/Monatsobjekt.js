@@ -7,6 +7,7 @@ class Monatsobjekt {
         this._eintraege = [];
         this._ausgaben = 0;
         this._kategorien = []
+        this._kategorie = new Kategorie();
         this._html = this._html_generieren();
     }
 
@@ -18,21 +19,29 @@ class Monatsobjekt {
         return this._monat;
     }
 
-    eintrag_hinzufuegen(neuer_eintrag) {
-        this._eintraege.push(neuer_eintrag);
-        this._ausgaben += neuer_eintrag.betrag;
-        this._kategorie_summieren(neuer_eintrag);
+    eintrag_hinzufuegen(eintrag) {
+        this._eintraege.push(eintrag);
+        this._ausgaben = 0;
+        this._ausgaben += eintrag.betrag;
+        this._kategorie_summieren();
     }
-
-    _kategorie_summieren(neuer_eintrag) {
+    //
+    _kategorie_summieren() {
         this._kategorien.forEach(kat => {
-            if (kat.name === neuer_eintrag.kategorie) {
-                kat.summe += neuer_eintrag.betrag;
+            this._eintraege.forEach(eintrag => {
+                if (kat.name === eintrag.kategorie) {
+                    kat.summe += eintrag.betrag;
             }
+
+        })
         });
     }
 
     aktualisieren() {
+        this._kategorien = [];
+        this._kategorie.kategorien_sammeln().forEach(kat => {
+            this._kategorien.push(kat);
+        });
         this._kategorien.forEach(kat => {
             kat.summe = 0;
             this._eintraege.forEach(eintrag => {

@@ -186,17 +186,33 @@ article#aktueller_monat_liste {
 }
 
 .eintragsobjekt li > * {
-    padding:3px;
+    color:DarkSlateGrey;
     flex:1;
 }
 
-.delete {
+.betrag {
+    display:flex;
     justify-content: flex-end;
-    align-self: flex-end;
+    cursor:default;
+    border-right: 1px solid DarkSlateGrey;
+    padding:3px;
+    padding-right:6px;
+    margin-right:3px;
+}
+
+.kategorie {
+    cursor:default;
+    padding:3px;
+}
+
+.delete {
+    display:flex;
+    justify-content: center;
     margin-left:auto;
     margin-right:10px;
     border-radius: 5px;
     flex-basis:50px;
+    padding:3px;
 
 }
 
@@ -204,4 +220,5 @@ article#aktueller_monat_liste {
     background-color: PaleVioletRed;
     /* transition-delay: 300ms; */
     transition-duration:400ms;
+    cursor:grabbing;
 }

@@ -1,9 +1,13 @@
 
 class Gesamt {
+    //
+    constructor() {
+        this._kategorie = new Kategorie()
+    }
 
     _kategorien_erzeugen() {
         if (haushaltsbuch._kategorien.length === 0) {
-            kategorie.kategorien_sammeln().forEach(kat => {
+            this._kategorie.kategorien_sammeln().forEach(kat => {
             haushaltsbuch._kategorien.push(kat);
         })};
     }

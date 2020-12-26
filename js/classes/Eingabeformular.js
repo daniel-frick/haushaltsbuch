@@ -1,6 +1,7 @@
 class Eingabeformular {
 
     constructor() {
+        this._kategorie = new Kategorie();
         this._html = this._html_generieren();
     }
 
@@ -44,15 +45,15 @@ class Eingabeformular {
                     <input form="eingabeformular" id="betrag" type="number" required step="1" />
                 </div>
                 <div>
-                    <label for="kategorie">Kategorie</label>
-                    <select id="kategorie" form="eingabeformular"/>
+                    <label for="kategorie" id="label_for_kategorien">Kategorie</label>
+                    <!-- <select id="kategorie" form="eingabeformular"/>
                         <option value="Lotterleben" form="eingabeformular">Lotterleben</option>
                         <option value="Haushalt" form="eingabeformular">Haushalt</option>
                         <option value="Essen" form="eingabeformular">Essen</option>
                         <option value="Vergnügen" form="eingabeformular">Vergnügen</option>
                         <option value="Auto" form="eingabeformular">Auto</option>
                         <option value="Reisen" form="eingabeformular">Reisen</option>
-                    </select>
+                    </select> -->
                 </div>
                 <div>
                     <label for="monat">Monat</label>
@@ -71,5 +72,6 @@ class Eingabeformular {
 
     anzeigen() {
         document.querySelector('#section_left').insertAdjacentElement('afterbegin', this._html);
+        document.querySelector("#label_for_kategorien").insertAdjacentElement('afterend', this._kategorie.kategorien_html_erstellen());
     }
 };

@@ -2,30 +2,34 @@ class Monatssammlung {
 
     constructor() {
         this._alle_monate = [];
-        this._html = this._html_generieren;
     }
 
-    eintrag_hinzufuegen(neuer_eintrag) {
-        let eintragsmonat = neuer_eintrag.datum.getMonth();
-        let eintragsjahr = neuer_eintrag.datum.getFullYear();
-        let monat_vorhanden = false;
-        this._alle_monate.forEach(monatsobjekt => {
-            if (eintragsmonat === monatsobjekt.monat() && eintragsjahr === monatsobjekt.jahr()) {
-                monatsobjekt.eintrag_hinzufuegen(neuer_eintrag);
-                monat_vorhanden = true;
-            }
-        });
-        if (!monat_vorhanden) {
-                this._monat_hinzufuegen(eintragsjahr, eintragsmonat, neuer_eintrag);
-        }
-    };
+    aktualisieren() {
+            let monat_vorhanden = false;
+            console.log(this._alle_monate);
+            haushaltsbuch.eintraege.forEach(eintrag => {
+                let eintragsmonat = eintrag.datum.getMonth();
+                let eintragsjahr = eintrag.datum.getFullYear();
+                this._alle_monate.forEach(monat => {
+                    if (eintragsmonat === monat.monat() && eintragsjahr === monat.jahr()) {
+                        monat._eintraege.push(eintrag);
+                        monat.aktualisieren();
+                        monat_vorhanden = true;
+                    }});
+                    console.log(monat_vorhanden);
+                    if (!monat_vorhanden) {
+                        this._monat_hinzufuegen(eintragsjahr, eintragsmonat, eintrag);
+                    }
+                });
+    }
 
-    _monat_hinzufuegen(jahr, monat, neuer_eintrag) {
+    _monat_hinzufuegen(jahr, monat, eintrag) {
         let neuer_monat = new Monatsobjekt(jahr, monat);
         neuer_monat._jahr = jahr;
         neuer_monat._monat = monat;
-        neuer_monat.eintrag_hinzufuegen(neuer_eintrag);
+        neuer_monat.aktualisieren();
         this._alle_monate.push(neuer_monat);
+        this.aktualisieren();
     }
 
     _eintrag_entfernen(timestamp) {
@@ -37,7 +41,6 @@ class Monatssammlung {
                 }
             }
         })
-        console.log(this._alle_monate);
         aktuell.anzeigen();
     }
 }

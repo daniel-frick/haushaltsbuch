@@ -1,15 +1,13 @@
 
-class ListeAktuell {
+class Liste {
 
     _aktueller_monat() {
         return new Date();
     }
 
     _monat_ermitteln() {
-        let monat_vorhanden = false;
-        for(let monat of monatssammlung._alle_monate) {
+        for(let monat of haushaltsbuch._monatssammlung._alle_monate) {
             if((monat._monat === this._aktueller_monat().getMonth()) && (monat._jahr = this._aktueller_monat().getFullYear())) {
-                monat_vorhanden = true;
                 return monat;
             }
         }
@@ -19,14 +17,13 @@ class ListeAktuell {
         let listenpunkt = document.createElement('li');
         listenpunkt.setAttribute("data-timestamp", eintrag.timestamp);
         let span_kat = document.createElement('span');
-        span_kat.setAttribute('class', 'nachrechts');
+        span_kat.setAttribute('class', 'betrag');
         span_kat.innerText = `${this._betrag_zu_string(eintrag.betrag)} Euro`
         listenpunkt.appendChild(span_kat);
         let span_betrag = document.createElement('span');
-        span_betrag.setAttribute('class', 'nachlinks');
+        span_betrag.setAttribute('class', 'kategorie');
         span_betrag.innerText = `${eintrag.kategorie}`;
         listenpunkt.appendChild(span_betrag);
-
         let span_entfernen = document.createElement('span');
         span_entfernen.setAttribute('class', 'delete');
         span_entfernen.innerText = `Eintrag entfernen`;
@@ -48,8 +45,8 @@ class ListeAktuell {
         monat._eintraege.splice(index, 1);
         monat.aktualisieren();
         haushaltsbuch._eintrag_entfernen(timestamp);
-        aktuell.anzeigen();
-        gesamt.anzeigen();
+        haushaltsbuch._aktuell.anzeigen();
+        haushaltsbuch._gesamt.anzeigen();
         this.anzeigen();
     }
 
